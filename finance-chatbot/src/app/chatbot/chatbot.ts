@@ -62,9 +62,6 @@ export class Chatbot implements AfterViewInit {
 			timestamp: new Date()
 		});
 		this.fetchResponse();
-		setTimeout(() => {
-			this.scrollToBottom();
-		}, 0);
 	}
 
 	async fetchResponse() {
@@ -77,6 +74,9 @@ export class Chatbot implements AfterViewInit {
 				options: this.botResponse.statusCode === '404' ? this.fetchDefaultOptions() : [] // if no response found, then show some default options for user to choose
 			})
 			this.inputMessage = '';
+			setTimeout(() => {
+				this.scrollToBottom();
+			}, 0);
 		} catch (error) {
 			console.warn('Error fetching response:', error);
 		}
